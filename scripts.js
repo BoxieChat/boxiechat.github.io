@@ -37,7 +37,7 @@ function playBoxie(){
             boxie.setAttribute("src", "https://boxiechat.github.io/logo.png");
             frame = 1;
         } else {
-            boxie.setAttribute("src", "https://boxiechat.github.io/logo.png");
+            boxie.setAttribute("src", "https://boxiechat.github.io/logo1.png");
             frame = 0;
         }
     }, 100);
