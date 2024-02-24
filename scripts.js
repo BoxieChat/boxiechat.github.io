@@ -34,10 +34,10 @@ function playBoxie(){
     var frame = 0;
     var e = setInterval(function(){
         if (frame == 0){
-            boxie.setAttribute("src", "logo.png");
+            boxie.setAttribute("src", "https://boxiechat.github.io/logo.png");
             frame = 1;
         } else {
-            boxie.setAttribute("src", "logo1.png");
+            boxie.setAttribute("src", "https://boxiechat.github.io/logo.png");
             frame = 0;
         }
     }, 100);
