@@ -4,6 +4,10 @@ var chat = document.getElementById("chat");
 var boxie = document.getElementById("boxie");
 var message;
 
+var S_BUTTON = {
+    STANDART: ""
+};
+
 var BoxieDialog = [
     [
         ["Начать", 1],
@@ -19,25 +23,37 @@ var BoxieDialog = [
     ],
 ];
 
+var db = {
+
+    "label": {
+        type: 0x94,
+        message: "",
+        buttons: [
+            ["button text...", 0, "/start"]
+        ]
+    },
+};
+
+
 setTimeout(function(){
     document.getElementById("app").style.display = "block";
     appStart();
-}, 400);
+}, 0);
 
 function appStart(){
     setTimeout(function(){
         sendMessage(0);
-    }, 500);
+    }, 1400);
 }
 
 function playBoxie(){
     var frame = 0;
     var e = setInterval(function(){
         if (frame == 0){
-            boxie.setAttribute("src", "https://boxiechat.github.io/logo.png");
+            boxie.setAttribute("src", "logo.png");
             frame = 1;
         } else {
-            boxie.setAttribute("src", "https://boxiechat.github.io/logo1.png");
+            boxie.setAttribute("src", "logo1.png");
             frame = 0;
         }
     }, 100);
@@ -53,8 +69,6 @@ function sendMessage(dialogId)
     message.className = "textb";
     message.innerText = BoxieDialog[dialogId][1][0];
     document.getElementById("t").appendChild(message);
-
-    
 
     for (var i = 0; i < BoxieDialog[dialogId][0].length; i += 2)
     {
