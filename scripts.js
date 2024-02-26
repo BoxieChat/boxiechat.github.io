@@ -4,6 +4,11 @@ var chat = document.getElementById("chat");
 var boxie = document.getElementById("boxie");
 var message;
 
+var audio = new Audio();
+    audio.preload = 'auto';
+    audio.src = "m.mp3";
+    
+
 var S_BUTTON = {
     STANDART: ""
 };
@@ -22,6 +27,7 @@ var BoxieDialog = [
         ["Я еще учусь, скоро я узнаю много нового о нашем предприятии и смогу помогать нашим ребятам."]
     ],
 ];
+
 
 var db = {
 
@@ -69,14 +75,13 @@ function sendMessage(dialogId)
     message.className = "textb";
     message.innerText = BoxieDialog[dialogId][1][0];
     document.getElementById("t").appendChild(message);
-
+    audio.play();
     for (var i = 0; i < BoxieDialog[dialogId][0].length; i += 2)
     {
         var button = document.createElement("div");
         button.className = "button";
         button.innerText = BoxieDialog[dialogId][0][i];
         button.setAttribute("key", BoxieDialog[dialogId][0][i + 1]);
-
         button.addEventListener("click", function(){
             chat.innerHTML = "";
             sendMessage(this.getAttribute("key"));
