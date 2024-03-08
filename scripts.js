@@ -4,15 +4,6 @@ var chat = document.getElementById("chat");
 var boxie = document.getElementById("boxie");
 var message;
 
-var audio = new Audio();
-    audio.preload = 'auto';
-    audio.src = "m.mp3";
-    
-
-var S_BUTTON = {
-    STANDART: ""
-};
-
 var BoxieDialog = [
     [
         ["Начать", 1],
@@ -28,38 +19,26 @@ var BoxieDialog = [
     ],
 ];
 
-
-var db = {
-
-    "label": {
-        type: 0x94,
-        message: "",
-        buttons: [
-            ["button text...", 0, "/start"]
-        ]
-    },
-};
-
-
 setTimeout(function(){
     document.getElementById("app").style.display = "block";
     appStart();
-}, 0);
+    Telegram.WebApp.showAlert("Это демонстрационная версия веб приложения Боксик. Некоторые функции недоступны или могут работать неправильно.");
+}, 400);
 
 function appStart(){
     setTimeout(function(){
         sendMessage(0);
-    }, 1400);
+    }, 500);
 }
 
 function playBoxie(){
     var frame = 0;
     var e = setInterval(function(){
         if (frame == 0){
-            boxie.setAttribute("src", "logo.png");
+            boxie.setAttribute("src", "res/logo.png");
             frame = 1;
         } else {
-            boxie.setAttribute("src", "logo1.png");
+            boxie.setAttribute("src", "res/logo1.png");
             frame = 0;
         }
     }, 100);
@@ -75,13 +54,16 @@ function sendMessage(dialogId)
     message.className = "textb";
     message.innerText = BoxieDialog[dialogId][1][0];
     document.getElementById("t").appendChild(message);
-    audio.play();
+
+    
+
     for (var i = 0; i < BoxieDialog[dialogId][0].length; i += 2)
     {
         var button = document.createElement("div");
         button.className = "button";
         button.innerText = BoxieDialog[dialogId][0][i];
         button.setAttribute("key", BoxieDialog[dialogId][0][i + 1]);
+
         button.addEventListener("click", function(){
             chat.innerHTML = "";
             sendMessage(this.getAttribute("key"));
